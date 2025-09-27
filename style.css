@@ -1,1 +1,311 @@
+:root {
+    --main-color: #000;          /* Чорний */
+    --accent-color: #FF4500;     /* Насичений Помаранчевий/Червоний (як акцент кросівок) */
+    --light-bg: #F4F4F4;         /* Світлий фон для секцій */
+    --text-light: #FFF;          /* Світлий текст */
+    --link-hover: #CC3700;       /* Колір посилання при наведенні */
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--text-light);
+    color: var(--main-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--main-color);
+    transition: color 0.3s;
+}
+
+section {
+    padding: 60px 5%;
+}
+
+/* ========================================================= */
+/* 2. Шапка та Навігація */
+/* ========================================================= */
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: var(--text-light);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Щоб шапка залишалася зверху */
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    color: var(--main-color);
+}
+
+/* Стиль для слова "КРОСІВОК" */
+.logo span {
+    color: var(--accent-color);
+}
+
+.logo-img {
+    height: 40px; 
+    margin-right: 10px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li a {
+    margin: 0 15px;
+    padding: 5px 0;
+    font-weight: 600;
+}
+
+.main-nav ul li a:hover {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.user-actions i {
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.user-actions i:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* ========================================================= */
+/* 3. Головний Банер та Задній Фон */
+/* ========================================================= */
+
+.hero-section {
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    /* Фільтр для затемнення фону, щоб текст був краще видимий */
+    background-blend-mode: multiply; 
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.hero-content {
+    z-index: 10;
+    color: var(--text-light);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.btn-shop {
+    display: inline-block;
+    padding: 12px 40px;
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    border-radius: 50px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+}
+
+.btn-shop:hover {
+    background-color: var(--link-hover);
+    transform: scale(1.05);
+}
+
+/* ========================================================= */
+/* 4. Анімація */
+/* ========================================================= */
+
+/* Анімація появи заголовка */
+@keyframes fadeInSlide {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.animated-headline {
+    animation: fadeInSlide 1.5s ease-out;
+}
+
+/* Анімація картки товару при наведенні */
+@keyframes pulseShadow {
+    0% { box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); }
+    50% { box-shadow: 0 8px 25px rgba(255, 69, 0, 0.2); }
+    100% { box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); }
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    animation: pulseShadow 0.8s infinite alternate;
+}
+
+
+/* ========================================================= */
+/* 5. Каталог Товарів та Товарна Картка */
+/* ========================================================= */
+
+.product-catalog {
+    text-align: center;
+    background-color: var(--light-bg);
+}
+
+.product-catalog h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.product-catalog h2::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 10px auto 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background-color: var(--text-light);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.5s;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    font-size: 1.3rem;
+    margin: 10px 0 5px;
+}
+
+.product-card .price {
+    color: var(--accent-color);
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    background-color: var(--main-color);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.product-card button:hover {
+    background-color: var(--accent-color);
+}
+
+/* ========================================================= */
+/* 6. Інші Сторінки та Футер */
+/* ========================================================= */
+
+.katalog-page, .about-page, .contact-page {
+    min-height: 100vh;
+    padding-top: 100px;
+    text-align: center;
+}
+
+footer {
+    background-color: var(--main-color);
+    color: var(--light-bg);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+/* ========================================================= */
+/* 7. Адаптивність (Mobile First) */
+/* ========================================================= */
+
+@media (max-width: 992px) {
+    .main-nav ul {
+        gap: 10px;
+    }
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-wrap: wrap;
+    }
+    .main-nav {
+        order: 3; /* Переміщуємо навігацію вниз на мобільних */
+        width: 100%;
+        margin-top: 10px;
+    }
+    .main-nav ul {
+        justify-content: space-around;
+    }
+    .user-actions {
+        order: 2;
+    }
+    .logo {
+        order: 1;
+    }
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .product-grid {
+        grid-template-columns: 1fr; /* Один стовпець на мобільних */
+    }
+}
